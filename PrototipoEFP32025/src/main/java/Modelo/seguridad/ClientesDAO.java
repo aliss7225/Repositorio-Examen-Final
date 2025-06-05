@@ -30,11 +30,11 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class ClientesDAO {
 
-    private static final String SQL_SELECT = "SELECT codigo_clientes, nombre_clientes, nit_clientes FROM clientes";
-    private static final String SQL_INSERT = "INSERT INTO clientes(codigo_clientes, nombre_clientes, nit_clientes) VALUES(?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE clientes SET nombre_clientes=?, nit_clientes=? WHERE codigo_clientes = ?";
+    private static final String SQL_SELECT = "SELECT codigo_clientes, nombre_clientes, nit_clientes,tipo_bodega,direccion FROM clientes";
+    private static final String SQL_INSERT = "INSERT INTO clientes(codigo_clientes, nombre_clientes, nit_clientes,tipo_bodega,direccion) VALUES(?, ?, ?, ?, ?)";
+    private static final String SQL_UPDATE = "UPDATE clientes SET nombre_clientes=?, nit_clientes=?, nombre_clientes=?, nit_clientes=? WHERE codigo_clientes = ?";
     private static final String SQL_DELETE = "DELETE FROM clientes WHERE codigo_clientes=?";
-    private static final String SQL_QUERY = "SELECT codigo_clientes, nombre_clientes, nit_clientes FROM clientes WHERE codigo_clientes = ?";
+    private static final String SQL_QUERY = "SELECT codigo_clientes, nombre_clientes, nit_clientes,tipo_bodega,direccion FROM clientes WHERE codigo_clientes = ?";
 
     public List<Clientes> select() {
         Connection conn = null;
@@ -51,11 +51,15 @@ public class ClientesDAO {
                 String codigoCliente = rs.getString("codigo_clientes");
                 String nombreClientes = rs.getString("nombre_clientes");
                 String nitClientes = rs.getString("nit_clientes");
+                String tipo_bodega = rs.getString("tipo_bodega");
+                String direccion = rs.getString("direccion");
                 
                 cliente = new Clientes();
                 cliente.setCodigo_clientes(codigoCliente);
                 cliente.setNombre_clientes(nombreClientes);
                 cliente.setNit_clientes(nitClientes);
+                cliente.setTipo_bodega(tipo_bodega);
+                cliente.setDireccion(direccion);
                 
                 clientes.add(cliente);
             }
@@ -81,6 +85,8 @@ public class ClientesDAO {
             stmt.setString(1, cliente.getCodigo_clientes());
             stmt.setString(2, cliente.getNombre_clientes());
             stmt.setString(3, cliente.getNit_clientes());
+            stmt.setString(4, cliente.getTipo_bodega());
+            stmt.setString(5, cliente.getDireccion());
 
             System.out.println("ejecutando query: " + SQL_INSERT);
             rows = stmt.executeUpdate();
@@ -108,6 +114,9 @@ public class ClientesDAO {
             stmt.setString(1, cliente.getNombre_clientes());
             stmt.setString(2, cliente.getNit_clientes());
             stmt.setString(3, cliente.getCodigo_clientes());
+            stmt.setString(4, cliente.getTipo_bodega());
+            stmt.setString(5, cliente.getDireccion());
+
             
             rows = stmt.executeUpdate();
             System.out.println("Registros actualizado: " + rows);
@@ -161,11 +170,16 @@ public class ClientesDAO {
                 String codigoCliente = rs.getString("codigo_clientes");
                 String nombreClientes = rs.getString("nombre_clientes");
                 String nitClientes = rs.getString("nit_clientes");
+                String tipo_bodega = rs.getString("tipo_bodega");
+                String direccion = rs.getString("direccion");
                 
                 cliente = new Clientes();
                 cliente.setCodigo_clientes(codigoCliente);
                 cliente.setNombre_clientes(nombreClientes);
                 cliente.setNit_clientes(nitClientes);
+                cliente.setTipo_bodega(tipo_bodega);
+                cliente.setDireccion(direccion);
+
 
             }
 

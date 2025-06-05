@@ -36,19 +36,23 @@ public class MantenimientoClientes extends javax.swing.JInternalFrame {
     
     public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("ID Perfil");
+        modelo.addColumn("ID");
         modelo.addColumn("Nombre");
-        modelo.addColumn("Nit");
+        modelo.addColumn("Estatus");
+         modelo.addColumn("Bodega");
+          modelo.addColumn("Direccion");
         
         ClientesDAO clientesDAO = new ClientesDAO();
         List<Clientes> clientes = clientesDAO.select();
         
         tablaSedes.setModel(modelo);
-        String[] dato = new String[3];
+        String[] dato = new String[5];
         for (int i = 0; i < clientes.size(); i++) {
             dato[0] = clientes.get(i).getCodigo_clientes();
             dato[1] = clientes.get(i).getNombre_clientes();
             dato[2] = clientes.get(i).getNit_clientes();
+            dato[3] = clientes.get(i).getTipo_bodega();
+            dato[4] = clientes.get(i).getDireccion();
             modelo.addRow(dato);
         }
     }
@@ -60,6 +64,9 @@ public class MantenimientoClientes extends javax.swing.JInternalFrame {
         clienteAConsultar = perfilDAO.query(clienteAConsultar);
         txtNombre.setText(clienteAConsultar.getNombre_clientes());
         txtEstatus.setText(clienteAConsultar.getNit_clientes());
+        txtbodega.setText(clienteAConsultar.getTipo_bodega());
+        txtdireccion.setText(clienteAConsultar.getDireccion());
+        
         UsuarioConectado usuarioEnSesion = new UsuarioConectado();
         int resultadoBitacora=0;
         Bitacora bitacoraRegistro = new Bitacora();
@@ -105,8 +112,8 @@ public class MantenimientoClientes extends javax.swing.JInternalFrame {
         txtidclientes = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtbodega = new javax.swing.JTextField();
+        txtdireccion = new javax.swing.JTextField();
         label9 = new javax.swing.JLabel();
         label10 = new javax.swing.JLabel();
 
@@ -265,9 +272,9 @@ public class MantenimientoClientes extends javax.swing.JInternalFrame {
                                     .addComponent(label10))
                                 .addGap(49, 49, 49)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1)
+                                    .addComponent(txtbodega)
                                     .addComponent(txtEstatus)
-                                    .addComponent(jTextField2))))
+                                    .addComponent(txtdireccion))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lb, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -334,11 +341,11 @@ public class MantenimientoClientes extends javax.swing.JInternalFrame {
                                     .addComponent(txtEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtbodega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(label10))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(label9))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -386,6 +393,8 @@ public class MantenimientoClientes extends javax.swing.JInternalFrame {
         clienteAInsertar.setCodigo_clientes(txtidclientes.getText());
         clienteAInsertar.setNombre_clientes(txtNombre.getText());
         clienteAInsertar.setNit_clientes(txtEstatus.getText());
+        clienteAInsertar.setTipo_bodega(txtbodega.getText());
+        clienteAInsertar.setDireccion(txtdireccion.getText());
         clientesDAO.insert(clienteAInsertar);
         UsuarioConectado usuarioEnSesion = new UsuarioConectado();
         int resultadoBitacora=0;
@@ -406,6 +415,8 @@ public class MantenimientoClientes extends javax.swing.JInternalFrame {
         clientesAActualizar.setCodigo_clientes(txtbuscado.getText());
         clientesAActualizar.setNombre_clientes(txtNombre.getText());
         clientesAActualizar.setNit_clientes(txtEstatus.getText());
+        clientesAActualizar.setTipo_bodega(txtbodega.getText());
+        clientesAActualizar.setDireccion(txtdireccion.getText());
         clientesDAO.update(clientesAActualizar);
         llenadoDeTablas();
         UsuarioConectado usuarioEnSesion = new UsuarioConectado();
@@ -418,6 +429,8 @@ public class MantenimientoClientes extends javax.swing.JInternalFrame {
         cbox_empleado.setSelectedIndex(0);
         txtidclientes.setText("");
         txtNombre.setText("");
+        txtbodega.setText("");
+        txtdireccion.setText("");
         txtEstatus.setText("");
         txtbuscado.setText("");
         btnRegistrar.setEnabled(true);
@@ -473,8 +486,6 @@ public class MantenimientoClientes extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel label1;
     private javax.swing.JLabel label10;
     private javax.swing.JLabel label3;
@@ -488,7 +499,9 @@ public class MantenimientoClientes extends javax.swing.JInternalFrame {
     private javax.swing.JTable tablaSedes;
     private javax.swing.JTextField txtEstatus;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtbodega;
     private javax.swing.JTextField txtbuscado;
+    private javax.swing.JTextField txtdireccion;
     private javax.swing.JTextField txtidclientes;
     // End of variables declaration//GEN-END:variables
 }

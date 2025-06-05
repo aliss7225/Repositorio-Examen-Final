@@ -13,16 +13,37 @@ public class Clientes {
     private String codigo_clientes;
     private String nombre_clientes;
     private String nit_clientes;
+    private String tipo_bodega;
+    private String direccion;
 
-    public Clientes(String codigo_clientes, String nombre_clientes, String nit_clientes) {
+    public Clientes(String codigo_clientes, String nombre_clientes, String nit_clientes,String tipo_bodega, String direccion) {
         this.codigo_clientes = codigo_clientes;
         this.nombre_clientes = nombre_clientes;
         this.nit_clientes = nit_clientes;
+        this.tipo_bodega = tipo_bodega;
+        this.direccion = direccion;
     }
+
+ 
 
     @Override
     public String toString() {
-        return "Clientes{" + "codigo_clientes=" + codigo_clientes + ", nombre_clientes=" + nombre_clientes + ", nit_clientes=" + nit_clientes + '}';
+        return "Clientes{" + "codigo_clientes=" + codigo_clientes + ", nombre_clientes=" + nombre_clientes + ", nit_clientes=" + nit_clientes + ", tipo_bodega=" + tipo_bodega + ", direccion=" + direccion +'}';
+    }
+       public String getTipo_bodega() {
+        return tipo_bodega;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setTipo_bodega(String tipo_bodega) {
+        this.tipo_bodega = tipo_bodega;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     public String getCodigo_clientes() {
