@@ -1,0 +1,26 @@
+commit 6f01dd3ef569d825dde535f1965f7c8eccde642a
+Author: Alisson López <Alopezo21@miumg.edu.gt>
+Date:   Thu Jun 5 13:05:16 2025 -0600
+
+    subiendo practica para examen final
+
+commit 406135b42fe1ada7ca4bf578ec7c9f42702eb00d
+Merge: 8ed3fb4 59ef085
+Author: Alisson López <156858728+aliss7225@users.noreply.github.com>
+Date:   Thu Jun 5 12:26:20 2025 -0600
+
+    Merge pull request #1 from aliss7225/RamaContenedor7225
+    
+    subiendo base
+
+commit 59ef0852159ad42d05b29a7f4761179ba40d972d
+Author: Alisson López <Alopezo21@miumg.edu.gt>
+Date:   Thu Jun 5 11:55:53 2025 -0600
+
+    subiendo base
+
+commit 8ed3fb460964be2c7753270eda7f5d955e2ac773
+Author: Alisson López <156858728+aliss7225@users.noreply.github.com>
+Date:   Thu Jun 5 11:45:04 2025 -0600
+
+    Initial commit
